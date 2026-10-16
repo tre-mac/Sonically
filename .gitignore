@@ -1,0 +1,14 @@
+# Secrets: never commit these
+.env
+.env.*
+*.pem
+*.key
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Dependencies (if anyone adds tooling later)
+node_modules/

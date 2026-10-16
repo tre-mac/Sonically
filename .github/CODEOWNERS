@@ -1,0 +1,14 @@
+# Who gets auto-requested for review when a file changes.
+# Replace the @usernames with your teammates' GitHub handles.
+
+*                       @frontend-lead
+/css/search.css         @search-owner
+/js/search.js           @search-owner
+/css/results.css        @results-owner
+/js/results.js          @results-owner
+/css/vibe.css           @vibe-owner
+/js/vibe.js             @vibe-owner
+/css/chatbot.css        @chatbot-owner
+/js/chatbot.js          @chatbot-owner
+/docs/api-contract.md   @frontend-lead @backend-lead
+/js/api.js              @frontend-lead @backend-lead

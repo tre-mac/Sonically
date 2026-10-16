@@ -1,1 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />                                              <!-- Text encoding so emojis/accents render -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" /> <!-- Makes the layout scale on phones -->
+  <title>MBSR</title>
+  <!-- Inline emoji favicon: no extra file to host -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎧</text></svg>" />
 
+  <!-- One stylesheet per feature, so each teammate edits their own file and merge conflicts stay rare -->
+  <link rel="stylesheet" href="css/base.css" />      <!-- Colors, fonts, page layout (shared) -->
+  <link rel="stylesheet" href="css/search.css" />    <!-- Feature 1: mood search bar -->
+  <link rel="stylesheet" href="css/results.css" />   <!-- Feature 2: song result cards -->
+  <link rel="stylesheet" href="css/vibe.css" />      <!-- Feature 3: weekly vibe panel -->
+  <link rel="stylesheet" href="css/chatbot.css" />   <!-- Feature 4: corner chatbot -->
+</head>
+<body>
+  <!-- ===== Header + nav ===== -->
+  <header class="site-header">
+    <a href="#" class="logo">MBSR<span>.</span></a>
+    <nav class="nav">
+      <a href="#search-section">Find songs</a>          <!-- Jumps to the search area -->
+      <a href="#vibe-section">My week</a>               <!-- Jumps to the weekly vibe panel -->
+    </nav>
+  </header>
+
+  <main>
+    <!-- ===== FEATURE 1: Mood search (owner: search teammate) ===== -->
+    <section id="search-section" class="hero">
+      <h1>How are you feeling?</h1>
+      <p class="subtitle">Describe your mood or what's going on. We'll find the soundtrack.</p>
+
+      <form id="search-form" class="search-form" autocomplete="off">  <!-- A form so Enter submits it -->
+        <label for="mood-input" class="visually-hidden">Your mood</label> <!-- Screen-reader label -->
+        <!-- maxlength 200 matches the backend validation limit in docs/api-contract.md -->
+        <input id="mood-input" type="text" maxlength="200" placeholder="e.g. late night drive after a long week" required />
+        <button type="submit" id="search-btn">Find songs</button>
+      </form>
+
+      <!-- Quick-pick chips: clicking one fills the search bar (handled in search.js) -->
+      <div class="mood-chips" id="mood-chips">
+        <button type="button" class="chip" data-mood="hyped for the gym">💪 Gym</button>
+        <button type="button" class="chip" data-mood="calm and focused for studying">📚 Study</button>
+        <button type="button" class="chip" data-mood="heartbroken">💔 Heartbroken</button>
+        <button type="button" class="chip" data-mood="happy sunny day">☀️ Good day</button>
+      </div>
+    </section>
+
+    <!-- ===== FEATURE 2: Results (owner: results teammate) ===== -->
+    <section id="results-section" class="results-section" aria-live="polite"> <!-- aria-live announces new results -->
+      <p id="results-status" class="results-status"></p>  <!-- Loading / error / "for: <mood>" text -->
+      <div id="results-grid" class="results-grid"></div>  <!-- Song cards are injected here by results.js -->
+    </section>
+
+    <!-- ===== FEATURE 3: Weekly vibe (owner: vibe teammate) ===== -->
+    <section id="vibe-section" class="vibe-section">
+      <div class="vibe-header">
+        <h2>Your week in vibes</h2>
+        <button type="button" id="vibe-refresh" class="text-btn">Refresh</button> <!-- Re-fetches GET /vibe -->
+      </div>
+      <p id="vibe-summary" class="vibe-summary">Search a few moods and your week will show up here.</p>
+      <div id="vibe-chart" class="vibe-chart" role="img" aria-label="Mood searches per day this week"></div> <!-- Bars drawn by vibe.js -->
+      <div id="vibe-top" class="vibe-top"></div>          <!-- "Top mood this week" tags -->
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Song data from Spotify. Your taste profile stays on this device unless you chat with the bot.</p>
+    <button type="button" id="reset-profile" class="text-btn">Reset my profile</button> <!-- Clears localStorage profile (privacy control) -->
+  </footer>
+
+  <!-- ===== FEATURE 4: Chatbot widget (owner: chatbot teammate) ===== -->
+  <button id="chat-toggle" class="chat-toggle" aria-label="Open music chat" aria-expanded="false">💬</button>
+  <aside id="chat-panel" class="chat-panel" hidden>      <!-- hidden until the toggle is clicked -->
+    <div class="chat-header">
+      <span>Music buddy</span>
+      <button id="chat-close" class="chat-close" aria-label="Close chat">×</button>
+    </div>
+    <div id="chat-messages" class="chat-messages"></div> <!-- Message bubbles go here -->
+    <form id="chat-form" class="chat-form" autocomplete="off">
+      <input id="chat-input" type="text" maxlength="500" placeholder="Tell me what you listen to..." required />
+      <button type="submit">Send</button>
+    </form>
+  </aside>
+
+  <!-- Scripts load in dependency order: config → shared helpers → features → main (wires everything) -->
+  <script src="js/config.js"></script>    <!-- API URL + mock switch -->
+  <script src="js/storage.js"></script>   <!-- userId + taste profile in localStorage -->
+  <script src="js/mock.js"></script>      <!-- Fake responses so frontend works before backend is live -->
+  <script src="js/api.js"></script>       <!-- ONLY file that talks to the backend -->
+  <script src="js/results.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/vibe.js"></script>
+  <script src="js/chatbot.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

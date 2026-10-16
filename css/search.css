@@ -1,0 +1,56 @@
+/* ===== search.css — Feature 1: hero + mood search bar + quick-pick chips ===== */
+
+.hero {
+  text-align: center;
+  padding: 64px 0 32px;      /* Big breathing room at the top of the page */
+}
+.hero h1 { font-size: clamp(2rem, 5vw, 3rem); } /* Scales between phone and desktop */
+.subtitle { color: var(--muted); margin: 8px 0 28px; }
+
+.search-form {
+  display: flex;
+  gap: 8px;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.search-form input {
+  flex: 1;                   /* Input takes all remaining width */
+  padding: 14px 18px;
+  border-radius: 999px;      /* Pill shape */
+  border: 1px solid var(--surface-2);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 1rem;
+}
+.search-form input:focus { outline: 2px solid var(--accent); } /* Visible focus for keyboard users */
+.search-form button {
+  padding: 14px 24px;
+  border-radius: 999px;
+  border: none;
+  background: var(--accent);
+  color: #000;
+  font-weight: 700;
+  cursor: pointer;
+}
+.search-form button:disabled { opacity: 0.6; cursor: wait; } /* While a request is in flight */
+
+.mood-chips {
+  display: flex;
+  flex-wrap: wrap;           /* Wraps to a new line on narrow screens */
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+.chip {
+  background: var(--surface-2);
+  color: var(--text);
+  border: none;
+  border-radius: 999px;
+  padding: 6px 14px;
+  cursor: pointer;
+}
+.chip:hover { background: var(--accent-2); }
+
+@media (max-width: 600px) {
+  .search-form { flex-direction: column; } /* Stack input over button on phones */
+}
