@@ -1,0 +1,44 @@
+/* ===== vibe.css — Feature 3: weekly vibe panel (bar chart + top moods) ===== */
+
+.vibe-section {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-top: 48px;
+}
+.vibe-header { display: flex; justify-content: space-between; align-items: center; }
+.vibe-summary { color: var(--muted); margin: 8px 0 20px; }
+
+.vibe-chart {
+  display: flex;
+  align-items: flex-end;     /* Bars grow upward from the bottom */
+  justify-content: space-between;
+  gap: 8px;
+  height: 160px;
+}
+.vibe-day {
+  flex: 1;                   /* 7 equal-width columns */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+}
+.vibe-bar {
+  width: 100%;
+  max-width: 40px;
+  background: var(--accent-2);
+  border-radius: 6px 6px 0 0;
+  min-height: 4px;           /* Days with 0 searches still show a sliver */
+  transition: height 0.3s;
+}
+.vibe-label { font-size: 0.75rem; color: var(--muted); margin-top: 6px; }
+.vibe-mood { font-size: 1.1rem; margin-bottom: 4px; } /* Emoji for that day's main mood */
+
+.vibe-top { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.vibe-tag {
+  background: var(--surface-2);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 0.85rem;
+}

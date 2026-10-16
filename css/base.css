@@ -1,0 +1,73 @@
+/* ===== base.css — shared design tokens + page layout. Change colors here, not in feature files. ===== */
+
+:root {
+  --bg: #0f0f14;            /* Page background */
+  --surface: #1a1a23;       /* Cards, panels */
+  --surface-2: #24242f;     /* Inputs, hover states */
+  --text: #f1f1f5;          /* Main text */
+  --muted: #9a9aab;         /* Secondary text */
+  --accent: #1db954;        /* Spotify-ish green for buttons */
+  --accent-2: #8b5cf6;      /* Purple for vibe chart + chatbot */
+  --danger: #ef4444;        /* Error messages */
+  --radius: 14px;           /* Rounded corners everywhere */
+  --font: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif; /* Falls back to system font, no download cost */
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; } /* Predictable sizing across browsers */
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+main {
+  max-width: 1000px;        /* Keeps lines readable on wide screens */
+  margin: 0 auto;           /* Centers the content */
+  padding: 0 16px 120px;    /* Bottom padding so the chat button never covers content */
+}
+
+/* Header */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--surface-2);
+}
+.logo { color: var(--text); font-weight: 800; font-size: 1.4rem; text-decoration: none; }
+.logo span { color: var(--accent); } /* Green dot after the name */
+.nav a { color: var(--muted); text-decoration: none; margin-left: 20px; }
+.nav a:hover { color: var(--text); }
+
+/* Footer */
+.site-footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+  padding: 24px 16px;
+  border-top: 1px solid var(--surface-2);
+}
+
+/* Reusable bits */
+.text-btn {                  /* Link-style button (Refresh, Reset profile) */
+  background: none;
+  border: none;
+  color: var(--accent);
+  cursor: pointer;
+  font: inherit;
+  text-decoration: underline;
+}
+.visually-hidden {           /* Hides labels visually but keeps them for screen readers */
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+.error { color: var(--danger); }
+
+@media (max-width: 600px) {  /* Phone layout */
+  .nav a { margin-left: 12px; font-size: 0.9rem; }
+}
