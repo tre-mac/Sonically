@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />                                              <!-- Text encoding so emojis/accents render -->
   <meta name="viewport" content="width=device-width, initial-scale=1" /> <!-- Makes the layout scale on phones -->
-  <title>MBSR</title>
+  <title>Sonically</title>
   <!-- Inline emoji favicon: no extra file to host -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎧</text></svg>" />
 
@@ -17,7 +17,7 @@
 <body>
   <!-- ===== Header + nav ===== -->
   <header class="site-header">
-    <a href="#" class="logo">MBSR<span>.</span></a>
+    <a href="#" class="logo">Sonically<span>.</span></a>
     <nav class="nav">
       <a href="#search-section">Find songs</a>          <!-- Jumps to the search area -->
       <a href="#vibe-section">My week</a>               <!-- Jumps to the weekly vibe panel -->
@@ -27,8 +27,8 @@
   <main>
     <!-- ===== FEATURE 1: Mood search (owner: search teammate) ===== -->
     <section id="search-section" class="hero">
-      <h1>How are you feeling?</h1>
-      <p class="subtitle">Describe your mood or what's going on. We'll find the soundtrack.</p>
+      <h1>What's the vibes?</h1>
+      <p class="subtitle">Describe your mood and let us find the soundtrack!</p>
 
       <form id="search-form" class="search-form" autocomplete="off">  <!-- A form so Enter submits it -->
         <label for="mood-input" class="visually-hidden">Your mood</label> <!-- Screen-reader label -->
@@ -39,10 +39,10 @@
 
       <!-- Quick-pick chips: clicking one fills the search bar (handled in search.js) -->
       <div class="mood-chips" id="mood-chips">
-        <button type="button" class="chip" data-mood="hyped for the gym">💪 Gym</button>
-        <button type="button" class="chip" data-mood="calm and focused for studying">📚 Study</button>
-        <button type="button" class="chip" data-mood="heartbroken">💔 Heartbroken</button>
-        <button type="button" class="chip" data-mood="happy sunny day">☀️ Good day</button>
+        <button type="button" class="chip" data-mood="hyped for the gym">Gym</button>
+        <button type="button" class="chip" data-mood="calm and focused for studying">Study</button>
+        <button type="button" class="chip" data-mood="heartbroken">Heartbroken</button>
+        <button type="button" class="chip" data-mood="happy sunny day">Good day</button>
       </div>
     </section>
 
@@ -73,7 +73,7 @@
   <button id="chat-toggle" class="chat-toggle" aria-label="Open music chat" aria-expanded="false">💬</button>
   <aside id="chat-panel" class="chat-panel" hidden>      <!-- hidden until the toggle is clicked -->
     <div class="chat-header">
-      <span>Music buddy</span>
+      <span>Timmy's Space</span>
       <button id="chat-close" class="chat-close" aria-label="Close chat">×</button>
     </div>
     <div id="chat-messages" class="chat-messages"></div> <!-- Message bubbles go here -->
